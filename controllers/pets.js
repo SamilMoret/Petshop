@@ -1,9 +1,15 @@
+import petsModel from '../models/pets.js';
+
+
+
+
 class PetsControllers {
     constructor() {}
 
     async create(req, res) {
         try {
-            res.status(201).json({ status: 'create-ok' });
+            const data = petsModel.create(req.body);
+            res.status(201).json(data);
         } catch (e) {
             res.status(500).send(e);
         }
