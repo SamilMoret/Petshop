@@ -1,34 +1,28 @@
-import { ObjectId } from "mongodb";
-import dbClient from "../config/dbClient.js";
+import Pet from '../schemas/pets.js';
 
 
 
 class petsModel {
 
     async create(pet){
-        const colPets = dbClient.db.collection('pets');
-        return await colPets.insertOne(pet);
+        return await Pet.create(pet);
 
     }
 
     async update(id, pet){
-        const colPets = dbClient.db.collection('pets');
-        return await colPets.updateOne({_id: new ObjectId(id)}, {$set: pet});
+        return await Pet.findOneAndUpdate(id, pet, {new: true});
     }
 
     async delete(id){
-        const colPets = dbClient.db.collection('pets');
-        return await colPets.deleteOne({_id: new ObjectId(id)});
+        return await Pet.findOneAndDelete(id);
     }
 
     async getAll() {
-        const colPets = dbClient.db.collection('pets');
-        return await colPets.updateOne({id: new ObjectId})
+        return await Pet.find();
     }
 
     async getOne(id) {
-        const colPets = dbClient.db.collection('pets');
-        return await colPets.findOne({_id: new ObjectId(id)}, pet);
+        return await Pet.findById(id);
     }
 }
 
