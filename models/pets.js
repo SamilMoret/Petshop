@@ -10,11 +10,11 @@ class petsModel {
     }
 
     async update(id, pet){
-        return await Pet.findOneAndUpdate(id, pet, {new: true});
+        return await Pet.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(id) }, pet, {new: true});
     }
 
     async delete(id){
-        return await Pet.findOneAndDelete(id);
+        return await Pet.findOneAndDelete({ _id: new mongoose.Types.ObjectId(id) });
     }
 
     async getAll() {
