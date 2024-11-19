@@ -1,5 +1,4 @@
 import 'dotenv/config';
-import { MongoClient } from 'mongodb';
 import mongoose from 'mongoose';
 
 class DbClient {

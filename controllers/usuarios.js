@@ -1,5 +1,7 @@
 import usuariosModel from '../models/usuarios.js';
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt';
+import jsonwebtoken from 'jsonwebtoken';
+import { gerarToken } from '../helpers/autenticacao.js';
 
 class usuarioController{
     constructor() {}
@@ -41,7 +43,9 @@ class usuarioController{
             return res.status(400).json({ error: 'Password não valido' });
         }
 
-        return res.status(200).json({msg: 'Usuario Autenticado'})
+        const token = gerarToken(email);
+
+        return res.status(200).json({msg: 'Usuario Autenticado', token})
 
     }catch (e) {
        
