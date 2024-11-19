@@ -2,7 +2,9 @@ import petsModel from '../models/pets.js';
 
 
 class PetsControllers {
-    constructor() {}
+    constructor() {
+        
+    }
 
     async create(req, res) {
         try {
