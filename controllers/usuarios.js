@@ -1,6 +1,5 @@
 import usuariosModel from '../models/usuarios.js';
 import bcrypt from 'bcrypt';
-import jsonwebtoken from 'jsonwebtoken';
 import { gerarToken } from '../helpers/autenticacao.js';
 
 class usuarioController{
@@ -51,6 +50,17 @@ class usuarioController{
        
         res.status(500).send(e);
     }
+
+    async profile(req, res) {
+        try {
+            const data = await usuariosModel.getOne({email: req.emailConetado});
+            res.status(201).json(data);
+        } catch (e) {
+            res.status(500).send(e);
+        }
+    }
 }
+
+
 
 export default new usuarioController;
